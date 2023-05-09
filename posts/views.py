@@ -1,5 +1,5 @@
 from django.shortcuts import render , redirect
-from .models import Post
+from .models import Post , Author
 from .forms import PostForm
 
 
@@ -18,7 +18,10 @@ def post_create(request):
     if request.method == 'POST':
         form = PostForm(request.POST,request.FILES)
         if form.is_valid():
-            form.save()
+            myform = form.save(commit=False)
+            author = Author.objects.get(user=request.user)
+            myform.author = author
+            myform.save()
             return redirect('/blog')
     else:
         form = PostForm()
