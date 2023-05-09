@@ -19,6 +19,7 @@ from django.urls import path , include
 from django.conf import settings
 from django.conf.urls.static import static
 from posts.views import post_list , post_detail , post_create , post_edit , delete_post
+from posts.api import PostAPI,PostDetailAPI
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -29,6 +30,10 @@ urlpatterns = [
     path('blog/<int:post_id>' , post_detail) , 
     path('blog/<int:post_id>/edit' , post_edit) , 
     path('blog/<int:post_id>/delete' , delete_post) , 
+    
+    path('blog/api' , PostAPI.as_view()) , 
+    path('blog/api/<int:pk>' , PostDetailAPI.as_view()) , 
+    
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
