@@ -19,7 +19,7 @@ from django.urls import path , include
 from django.conf import settings
 from django.conf.urls.static import static
 from posts.views import post_list , post_detail , post_create , post_edit , delete_post
-from posts.api import PostAPI,PostDetailAPI,PostUpdateAPI,PostCreateAPI,PostDeleteAPi
+from posts.api import PostAPI,PostDetailAPI #,PostUpdateAPI,PostCreateAPI,PostDeleteAPi
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -32,10 +32,10 @@ urlpatterns = [
     path('blog/<int:post_id>/delete' , delete_post) , 
     
     path('blog/api' , PostAPI.as_view()) , 
-    path('blog/api/create' , PostCreateAPI.as_view()),
+    # path('blog/api/create' , PostCreateAPI.as_view()),
     path('blog/api/<int:pk>' , PostDetailAPI.as_view()) , 
-    path('blog/api/<int:pk>/edit' , PostUpdateAPI.as_view()) , 
-    path('blog/api/<int:pk>/delete' , PostDeleteAPi.as_view()) , 
+    # path('blog/api/<int:pk>/edit' , PostUpdateAPI.as_view()) , 
+    # path('blog/api/<int:pk>/delete' , PostDeleteAPi.as_view()) , 
     
 ]
 
